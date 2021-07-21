@@ -1,0 +1,58 @@
+<mat-sidenav-container fxFill>
+  <mat-sidenav [autoFocus]="false" #drawer fixedInViewpor [mode]="'over'" >
+
+      <div fxLayout="column">
+        <mat-toolbar fxFlex="none" fxLayout="row">
+          <span style="color: white" fxFlex="grow">
+            <a>Контролер</a>
+          </span>
+
+          <span>
+            <button type="button" mat-icon-button (click)="drawer.toggle()">
+              <span class="back-icon" style="color: white"><fa-icon [icon]="faTimes"></fa-icon></span>
+            </button>
+          </span>
+
+        </mat-toolbar>
+
+
+        <mat-nav-list fxFlex="grow" fxLayout="column">
+          <a fxFlex="none" mat-list-item class="white-color" routerLink="/main" (click)="drawer.toggle()" >
+            <p mat-line class="name">Головна</p>
+            <fa-icon style="color: white" [icon]="faChevronRight"></fa-icon>
+          </a>
+          <mat-divider></mat-divider>
+
+        </mat-nav-list>
+
+        <mat-nav-list fxFlex="grow" fxLayout="column">
+          <a fxFlex="none" mat-list-item class="white-color" routerLink="/status" (click)="drawer.toggle()" >
+            <p mat-line class="name">Статуси транспорту</p>
+            <fa-icon style="color: white" [icon]="faChevronRight"></fa-icon>
+          </a>
+          <mat-divider></mat-divider>
+
+        </mat-nav-list>
+      </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content fxLayout="column">
+    <mat-toolbar>
+      <button
+        style="color: white"
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span></span>
+    </mat-toolbar>
+    <div fxFlex style="position: relative; overflow: auto;">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>

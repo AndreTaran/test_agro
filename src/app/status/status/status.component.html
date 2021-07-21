@@ -1,0 +1,63 @@
+<div>
+
+<div class="head">
+  <div class="forms">
+    <mat-form-field *ngFor="let filter of filterSelectObj" appearance="fill">
+      <mat-label>{{ filter?.name }}</mat-label>
+      <mat-select matNativeControl name="{{filter.columnProp}}"
+        (selectionChange)="applyFilter($event.value)">
+        <mat-option value="">--All--</mat-option>
+        <mat-option [value]="item" *ngFor="let item of filter.options">{{ item }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field class="searchFilter">
+      <input matInput (keyup)="applySearch($event.target.value)" placeholder="search">
+    </mat-form-field>
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]" ></mat-paginator>
+</div>
+
+<table mat-table matSort [dataSource]="dataSource" class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="Vehicle.name">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Vehicle </th>
+        <td mat-cell *matCellDef="let status"> {{status.Vehicle?.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Vehicle.Organization.name">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Organization </th>
+        <td mat-cell *matCellDef="let status"> {{status.Vehicle.Organization?.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Vehicle.Department.name">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Department </th>
+        <td mat-cell *matCellDef="let status"> {{status.Vehicle.Department?.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Vehicle.Contragent.name">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Contragent </th>
+        <td mat-cell *matCellDef="let status"> {{status.Vehicle.Contragent?.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="code1c">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> code1c </th>
+        <td mat-cell *matCellDef="let status"> {{status.code1c}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Aggregate">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Aggregate </th>
+        <td mat-cell *matCellDef="let status"> {{status.Aggregate?.name}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="Drivers">
+        <th mat-header-cell mat-sort-header *matHeaderCellDef> Drivers </th>
+        <td mat-cell *matCellDef="let status"> <p *ngFor="let driver of status.Drivers">{{driver.name}} </p></td>
+    </ng-container>
+  
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
